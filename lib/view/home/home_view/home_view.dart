@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatelessWidget {
@@ -5,6 +6,11 @@ class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: SizedBox());
+    return Scaffold(
+      body: const SizedBox(),
+      appBar: AppBar(
+        title: Text('explore'.tr()),
+      ),
+    );
   }
 }
