@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:news_app/generated/locale_keys.g.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -9,7 +10,7 @@ class HomeView extends StatelessWidget {
     return Scaffold(
       body: const SizedBox(),
       appBar: AppBar(
-        title: Text('explore'.tr()),
+        title: Text(LocaleKeys.explore.tr()),
       ),
     );
   }
