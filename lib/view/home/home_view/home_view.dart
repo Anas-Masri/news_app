@@ -91,12 +91,15 @@ class HomeView extends StatelessWidget {
                         child: ListView.builder(
                           itemCount: 5,
                           itemBuilder: (BuildContext context, int index) {
-                            return const CustomListTile(
-                                imageUrl:
-                                    'https://static.euronews.com/articles/stories/04/34/02/50/1440x810_cmsv2_edbb25e9-8017-5fad-be0d-32b56fe7ea79-4340250.jpg',
-                                title:
-                                    'Apple Unveils Revolutionary AI Features',
-                                subtitle: 'Abdallah . May 1, 2025');
+                            return GestureDetector(
+                              onTap: () => Get.toNamed(Routes.articleView),
+                              child: const CustomListTile(
+                                  imageUrl:
+                                      'https://static.euronews.com/articles/stories/04/34/02/50/1440x810_cmsv2_edbb25e9-8017-5fad-be0d-32b56fe7ea79-4340250.jpg',
+                                  title:
+                                      'Apple Unveils Revolutionary AI Features',
+                                  subtitle: 'Abdallah . May 1, 2025'),
+                            );
                           },
                         ),
                       ),

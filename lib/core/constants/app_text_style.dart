@@ -28,4 +28,10 @@ class AppTextStyle {
     color: AppColor.greayColor,
     fontSize: 12.sp,
   );
+  static TextStyle subTitle16black = TextStyle(
+    fontWeight: FontWeight.w400,
+    fontFamily: 'Inter',
+    color: AppColor.blackColor,
+    fontSize: 16.sp,
+  );
 }

@@ -11,6 +11,7 @@ class SearchView extends StatelessWidget {
         borderRadius: BorderRadius.circular(8.r),
         borderSide: const BorderSide(color: AppColor.blueColor));
     return Scaffold(
+      backgroundColor: AppColor.whiteColor,
       body: Padding(
         padding: EdgeInsets.only(top: 75.h),
         child: GetBuilder(
@@ -25,11 +26,16 @@ class SearchView extends StatelessWidget {
                     width: MediaQuery.of(context).size.width.w - 90.w,
                     color: AppColor.lightgreayColor,
                     child: TextField(
+                      onSubmitted: (value) => Get.toNamed(
+                          Routes.searchResultView,
+                          arguments: value),
+                      scrollPadding: const EdgeInsets.all(0),
                       controller: controller.searchController,
                       textAlignVertical: TextAlignVertical.center,
                       style:
                           AppTextStyle.title18Black.copyWith(fontSize: 17.sp),
                       decoration: InputDecoration(
+                          isDense: true,
                           fillColor: const Color(0xffF0EFF0),
                           filled: true,
                           hintText: "Search",
