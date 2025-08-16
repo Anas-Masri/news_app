@@ -9,13 +9,14 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColor.whiteColor,
       appBar: AppBar(
         actions: [
           Padding(
               padding: EdgeInsets.only(right: 20.w),
-              child: const Icon(
-                Icons.search,
-              ))
+              child: GestureDetector(
+                  onTap: () => Get.toNamed(Routes.searchView),
+                  child: const Icon(Icons.search)))
         ],
         toolbarHeight: 68.h,
         titleSpacing: 32.w,

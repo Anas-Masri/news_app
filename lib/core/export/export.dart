@@ -12,3 +12,4 @@ export 'package:news_app/core/export/export.dart';
 export 'package:news_app/generated/locale_keys.g.dart';
 export 'package:news_app/widgets/custom_list_tile.dart';
 export 'package:news_app/view/home/home_controller/home_controller.dart';
+export 'package:news_app/view/search/search_controller/search_controller.dart';
