@@ -1,15 +1,7 @@
 import 'package:easy_localization/easy_localization.dart' as easy;
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
-import 'package:news_app/core/constants/app_color.dart';
-import 'package:news_app/core/constants/app_text_style.dart';
-import 'package:news_app/generated/locale_keys.g.dart';
-import 'package:news_app/view/home/home_controller/home_controller.dart';
-
-import '../../../core/constants/app_contant.dart';
-import '../../../widgets/custom_list_tile.dart';
+import '../../../core/export/export.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});

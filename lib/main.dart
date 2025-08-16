@@ -1,11 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:news_app/core/constants/app_sizes.dart';
-import 'package:news_app/core/routing/app_routes.dart';
-import 'package:news_app/core/routing/routes.dart';
-import 'package:news_app/generated/codegen_loader.g.dart';
+
+import 'core/export/export.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
