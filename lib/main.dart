@@ -16,7 +16,7 @@ void main() async {
         supportedLocales: const [Locale('en'), Locale('ar')],
         path: 'assets/translations',
         fallbackLocale: const Locale('en'),
-        startLocale: const Locale('ar'),
+        startLocale: const Locale('en'),
         assetLoader: const CodegenLoader(),
         child: const MyApp()),
   );
@@ -33,6 +33,7 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (_, child) {
         return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
           getPages: AppRoutes.appPages,
           initialRoute: Routes.homeView,
           localizationsDelegates: context.localizationDelegates,
