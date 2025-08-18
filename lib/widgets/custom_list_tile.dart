@@ -5,9 +5,11 @@ class CustomListTile extends StatelessWidget {
       {super.key,
       required this.title,
       required this.subtitle,
-      required this.imageUrl});
+      required this.imageUrl,
+      required this.date});
   final String title;
   final String subtitle;
+  final String date;
   final String imageUrl;
 
   @override
@@ -22,13 +24,21 @@ class CustomListTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
+                  maxLines: 2,
                   title,
                   style: AppTextStyle.title18Black,
                 ),
                 SizedBox(height: 6.h),
-                Text(
-                  subtitle,
-                  style: AppTextStyle.subTitle12Greay,
+                Row(
+                  children: [
+                    SizedBox(
+                        width: MediaQuery.of(context).size.width / 3.2,
+                        child: Text(subtitle,
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                            style: AppTextStyle.subTitle12Greay)),
+                    Text(date, style: AppTextStyle.subTitle12Greay),
+                  ],
                 ),
               ],
             ),
@@ -36,8 +46,16 @@ class CustomListTile extends StatelessWidget {
           SizedBox(width: 12.w),
           ClipRRect(
             borderRadius: BorderRadius.circular(8.r),
-            child: Image.network(
-              imageUrl,
+            child: CachedNetworkImage(
+              imageUrl: imageUrl,
+              placeholder: (context, url) => const Center(
+                  child: CircularProgressIndicator(
+                color: AppColor.lightgreayColor,
+              )),
+              errorWidget: (context, url, error) => const Icon(
+                Icons.error,
+                color: AppColor.lightgreayColor,
+              ),
               width: 112.w,
               height: 80.h,
               fit: BoxFit.fill,

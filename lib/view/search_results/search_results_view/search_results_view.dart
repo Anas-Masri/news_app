@@ -20,6 +20,7 @@ class SearchResultsView extends StatelessWidget {
           itemCount: 10,
           itemBuilder: (BuildContext context, int index) {
             return const CustomListTile(
+                date: '',
                 title: 'Apple Unveils Revolutionary AI Features ',
                 subtitle: ' subtitle May 3, 2023',
                 imageUrl:

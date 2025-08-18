@@ -29,13 +29,15 @@ environment:
 # versions available, run `flutter pub outdated`.
 dependencies:
   cupertino_icons: ^1.0.8
+  dartz: ^0.10.1
   dio: null
   easy_localization: null
   flutter:
     sdk: flutter
   flutter_screenutil: null
   get: null
-
+  http: ^1.5.0
+  cached_network_image:
 dev_dependencies:
 
   # The "flutter_lints" package below contains a set of recommended lints to

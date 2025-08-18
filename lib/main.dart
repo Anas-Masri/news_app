@@ -1,5 +1,4 @@
 import 'package:easy_localization/easy_localization.dart';
-import 'package:get/get.dart';
 
 import 'core/export/export.dart';
 
