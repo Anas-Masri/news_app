@@ -6,13 +6,11 @@ import 'package:news_app/core/export/export.dart';
 
 class AppApi {
   static Future<Either<StatusRequest, NewsModel>> getData(
-      {required String category}) async {
+      {required Map<String, String> queryParameters,
+      required String url}) async {
     try {
       var response = await http.get(
-        Uri.parse(AppLinks.everything).replace(queryParameters: {
-          'q': category,
-          'apiKey': AppContant.apiKey,
-        }),
+        Uri.parse(url).replace(queryParameters: queryParameters),
       );
       if (response.statusCode == 200) {
         NewsModel responseBody = NewsModel.fromJson(jsonDecode(response.body));
@@ -25,13 +23,4 @@ class AppApi {
       return const Left(StatusRequest.serverFailure);
     }
   }
-}
-
-enum StatusRequest {
-  loading,
-  success,
-  failure,
-  serverFailure,
-  offlineFailure,
-  none
 }

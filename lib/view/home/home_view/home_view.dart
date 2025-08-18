@@ -44,7 +44,7 @@ class HomeView extends StatelessWidget {
                               separatorBuilder: (context, index) =>
                                   SizedBox(width: 12.w),
                               scrollDirection: Axis.horizontal,
-                              itemCount: AppContant.textTitle.length,
+                              itemCount: AppContant.categoryList.length,
                               itemBuilder: (BuildContext context, int index) {
                                 return GestureDetector(
                                   onTap: () => controller.changeCategory(index),
@@ -61,7 +61,7 @@ class HomeView extends StatelessWidget {
                                         borderRadius:
                                             BorderRadius.circular(56.r)),
                                     child: Text(
-                                      AppContant.textTitle[index],
+                                      AppContant.categoryList[index],
                                       style: AppTextStyle.subTitle14Black,
                                     ),
                                   ),

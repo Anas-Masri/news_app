@@ -3,7 +3,7 @@ import '../../../core/export/export.dart';
 
 class HomeController extends GetxController {
   int selectedCategory = 0;
-  var articles = <Article>[].obs;
+  List<Article> articles = <Article>[];
   Statues statues = Statues.init;
   int articleIndex = 0;
   changeCategory(int index) {
@@ -14,6 +14,7 @@ class HomeController extends GetxController {
   @override
   void onInit() {
     getAllNews();
+    getTopHeadLine();
     super.onInit();
   }
 
@@ -26,7 +27,11 @@ class HomeController extends GetxController {
   Future<void> getAllNews() async {
     statues = Statues.loading;
     update();
-    final response = await AppApi.getData(category: '*');
+    final response =
+        await AppApi.getData(url: AppLinks.everything, queryParameters: {
+      'q': '*',
+      'apiKey': AppContant.apiKey,
+    });
     response.fold(
       (failure) {
         statues = Statues.failure;
@@ -36,7 +41,29 @@ class HomeController extends GetxController {
         statues = Statues.success;
         update();
 
-        articles.value = news.articles ?? [];
+        articles = news.articles ?? [];
+      },
+    );
+  }
+
+  Future<void> getTopHeadLine() async {
+    statues = Statues.loading;
+    update();
+    final response =
+        await AppApi.getData(url: AppLinks.topHeadlines, queryParameters: {
+      'category': AppContant.categoryList[selectedCategory],
+      'apiKey': AppContant.apiKey,
+    });
+    response.fold(
+      (failure) {
+        statues = Statues.failure;
+        update();
+      },
+      (news) {
+        statues = Statues.success;
+        update();
+
+        articles = news.articles ?? [];
       },
     );
   }
