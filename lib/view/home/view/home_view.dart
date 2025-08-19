@@ -1,6 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:easy_localization/easy_localization.dart' as easy;
-import 'package:news_app/view/home/home_controller/home_controller.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:news_app/widgets/custom_horesintal_crousel_list_item.dart';
 
 import '../../../core/export/export.dart';
@@ -14,8 +13,17 @@ class HomeView extends StatelessWidget {
       backgroundColor: AppColor.whiteColor,
       appBar: AppBar(
         actions: [
+          GestureDetector(
+              onTap: () {
+                if (context.locale.languageCode == 'en') {
+                  context.setLocale(const Locale('ar'));
+                } else {
+                  context.setLocale(const Locale('en'));
+                }
+              },
+              child: const Icon(Icons.translate_sharp)),
           Padding(
-              padding: EdgeInsets.only(right: 20.w),
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: GestureDetector(
                   onTap: () => Get.toNamed(Routes.searchView),
                   child: const Icon(Icons.search)))
@@ -24,7 +32,7 @@ class HomeView extends StatelessWidget {
         titleSpacing: 32.w,
         backgroundColor: AppColor.lightgreayColor,
         title: Text(
-          easy.tr(LocaleKeys.explore),
+          LocaleKeys.explore.tr(),
           style: AppTextStyle.headTitle,
         ),
       ),
@@ -36,7 +44,8 @@ class HomeView extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(top: 16.h, left: 32.w),
+                      padding:
+                          EdgeInsets.only(top: 16.h, left: 16.w, right: 16.w),
                       child: SizedBox(
                         height: 32.h,
                         child: ListView.separated(
@@ -72,9 +81,16 @@ class HomeView extends StatelessWidget {
                         const CustomCenterCircularProgressIndicator(),
                       Statues.init =>
                         const CustomCenterCircularProgressIndicator(),
-                      Statues.failure =>
-                        const Center(child: Text('failure try again')),
-                      Statues.success => controller.articles.isEmpty
+                      Statues.failure => Column(
+                          children: [
+                            SizedBox(
+                                height:
+                                    MediaQuery.of(context).size.height / 2.5),
+                            const Center(
+                                child: Center(child: Text('failure try again')))
+                          ],
+                        ),
+                      Statues.success => controller.topHeadLineArticles.isEmpty
                           ? const CustomCenterCircularProgressIndicator()
                           : Column(
                               crossAxisAlignment: CrossAxisAlignment.start,

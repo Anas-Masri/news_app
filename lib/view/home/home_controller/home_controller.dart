@@ -23,6 +23,10 @@ class HomeController extends GetxController {
     super.onInit();
   }
 
+  void updateTranslate() {
+    update();
+  }
+
   getArticleIndex(int index) {
     update();
     Get.toNamed(Routes.articleView, arguments: articles[index]);
@@ -38,9 +42,10 @@ class HomeController extends GetxController {
     update();
   }
 
-  search(searchedText) {
-    if (searchedText.toString().length > 3) {
+  search(String searchedText) {
+    if (searchedText.length > 4) {
       getAllNews(searchedText);
+      update();
     }
   }
 
@@ -71,7 +76,7 @@ class HomeController extends GetxController {
     update();
     final response =
         await AppApi.getData(url: AppLinks.topHeadlines, queryParameters: {
-      'category': AppContant.categoryList[selectedCategory],
+      'category': AppContant.categoryListEn[selectedCategory],
       'apiKey': AppContant.apiKey,
     });
     response.fold(

@@ -14,6 +14,6 @@ export 'package:news_app/core/services/generated/locale_keys.g.dart';
 export 'package:news_app/model/news_model.dart';
 export 'package:news_app/view/home/home_controller/home_controller.dart';
 export 'package:news_app/widgets/custom_list_tile.dart';
-export 'package:get/get.dart';
+export 'package:get/get.dart' hide Trans;
 export 'package:cached_network_image/cached_network_image.dart';
 export 'package:news_app/widgets/custom_center_circular_progress_indicator.dart';

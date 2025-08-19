@@ -1,9 +1,14 @@
 {
     "explore": "Explore",
-    "travel": "Travel",
+    "general": "General",
     "technology": "Technology",
     "business": "Business",
     "entertainment": "Entertainment",
+    "health": "Health",
+    "science": "Science",
+    "sport": "Sport",
     "cancel": "Cancel",
-    "search_result": "Search Result"
+    "search": "Search",
+    "typeAnythingToSearch": "type Any Thing To Search",
+    "nothingFound": "nothing Found"
 }

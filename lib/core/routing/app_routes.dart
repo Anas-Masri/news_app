@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
 import 'package:news_app/core/routing/routes.dart';
-import 'package:news_app/view/home/article_view/article_view.dart';
-import 'package:news_app/view/home/home_view/home_view.dart';
-import 'package:news_app/view/home/search_view/search_view.dart';
-import 'package:news_app/view/search_results/search_results_view/search_results_view.dart';
+import 'package:news_app/view/home/view/article_view.dart';
+import 'package:news_app/view/home/view/home_view.dart';
+import 'package:news_app/view/home/view/search_view.dart';
+import 'package:news_app/view/home/view/search_results_view.dart';
 
 class AppRoutes {
   static final List<GetPage> appPages = [

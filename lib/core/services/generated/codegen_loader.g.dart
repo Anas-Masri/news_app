@@ -6,7 +6,7 @@ import 'dart:ui';
 
 import 'package:easy_localization/easy_localization.dart' show AssetLoader;
 
-class CodegenLoader extends AssetLoader{
+class CodegenLoader extends AssetLoader {
   const CodegenLoader();
 
   @override
@@ -14,23 +14,36 @@ class CodegenLoader extends AssetLoader{
     return Future.value(mapLocales[locale.toString()]);
   }
 
-  static const Map<String,dynamic> _ar = {
-  "explore": "استكشف",
-  "travel": "سفر",
-  "technology": "تقنية",
-  "business": "اعمال",
-  "entertainment": "ترفيه",
-  "cancel": "إلغاء",
-  "search_result": "نتيجة البحث"
-};
-static const Map<String,dynamic> _en = {
-  "explore": "Explore",
-  "travel": "Travel",
-  "technology": "Technology",
-  "business": "Business",
-  "entertainment": "Entertainment",
-  "cancel": "Cancel",
-  "search_result": "Search Result"
-};
-static const Map<String, Map<String,dynamic>> mapLocales = {"ar": _ar, "en": _en};
+  static const Map<String, dynamic> _ar = {
+    "explore": "استكشف",
+    "general": "عام",
+    "technology": "تقنية",
+    "business": "اعمال",
+    "entertainment": "ترفيه",
+    "health": "صحة",
+    "science": "علوم",
+    "sport": "رياضة",
+    "cancel": "إلغاء",
+    'search': "بحث",
+    'typeAnythingToSearch': "اكتب اي شيء للبحث",
+    'nothingFound': "لم يتم العثور على شيء",
+  };
+  static const Map<String, dynamic> _en = {
+    "explore": "Explore",
+    "general": "General",
+    "technology": "Technology",
+    "business": "Business",
+    "entertainment": "Entertainment",
+    "health": "Health",
+    "science": "Science",
+    "sport": "Sport",
+    "cancel": "Cancel",
+    'search': "Search",
+    'typeAnythingToSearch': "Type anything to search",
+    'nothingFound': "nothing found",
+  };
+  static const Map<String, Map<String, dynamic>> mapLocales = {
+    "ar": _ar,
+    "en": _en
+  };
 }

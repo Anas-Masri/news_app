@@ -1,5 +1,3 @@
-import 'package:news_app/view/home/home_controller/home_controller.dart';
-
 import '../../../core/export/export.dart';
 
 class ArticleView extends StatelessWidget {

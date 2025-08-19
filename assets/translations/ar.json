@@ -1,9 +1,14 @@
 {
     "explore": "استكشف",
-    "travel": "سفر",
+    "general": "عام",
     "technology": "تقنية",
     "business": "اعمال",
     "entertainment": "ترفيه",
+    "health": "صحة",
+    "science": "علوم",
+    "sport": "رياضة",
     "cancel": "إلغاء",
-    "search_result": "نتيجة البحث"
+    "search": "بحث",
+    "typeAnythingToSearch": "اكتب اي شيء للبحث",
+    "nothingFound": "لم يتم العثور على شيء"
 }

@@ -1,3 +1,5 @@
+import 'package:easy_localization/easy_localization.dart' as easy;
+
 import '../../../core/export/export.dart';
 
 class SearchView extends StatelessWidget {
@@ -39,7 +41,7 @@ class SearchView extends StatelessWidget {
                               isDense: true,
                               fillColor: const Color(0xffF0EFF0),
                               filled: true,
-                              hintText: "Search",
+                              hintText: easy.tr(LocaleKeys.search),
                               suffixIcon: GestureDetector(
                                 onTap: () => controller.clearSeach(),
                                 child: const Icon(Icons.cancel_rounded,
@@ -55,7 +57,7 @@ class SearchView extends StatelessWidget {
                       SizedBox(width: 12.w),
                       GestureDetector(
                         onTap: () => Get.back(),
-                        child: Text('Cancel',
+                        child: Text(easy.tr(LocaleKeys.cancel),
                             style: AppTextStyle.subTitle14Black.copyWith(
                                 color: AppColor.blueColor,
                                 fontWeight: FontWeight.w500)),
@@ -68,36 +70,54 @@ class SearchView extends StatelessWidget {
                             SizedBox(
                                 height:
                                     MediaQuery.of(context).size.height / 2.5),
-                            const Center(
-                                child: Text('Type anything to search')),
+                            Center(
+                                child: Text(
+                                    easy.tr(LocaleKeys.typeAnythingToSearch))),
                           ],
                         )
-                      : Expanded(
-                          child: Container(
-                            padding: EdgeInsets.symmetric(horizontal: 32.w),
-                            child: ListView.builder(
-                              itemCount: controller.articles.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                return GestureDetector(
-                                  onTap: () =>
-                                      controller.getArticleIndex(index),
-                                  child: CustomListTile(
-                                    date: controller.articles[index].publishedAt
-                                        .toString()
-                                        .substring(0, 10),
-                                    imageUrl:
-                                        controller.articles[index].urlToImage ??
+                      : controller.articles.isEmpty
+                          ? Column(
+                              children: [
+                                SizedBox(
+                                    height: MediaQuery.of(context).size.height /
+                                        2.5),
+                                Center(
+                                    child:
+                                        Text(easy.tr(LocaleKeys.nothingFound))),
+                              ],
+                            )
+                          : Expanded(
+                              child: Container(
+                                padding: EdgeInsets.only(
+                                    top: 16.h, right: 32.w, left: 32.w),
+                                child: ListView.builder(
+                                  padding: EdgeInsets.zero,
+                                  itemCount: controller.articles.length,
+                                  itemBuilder:
+                                      (BuildContext context, int index) {
+                                    return GestureDetector(
+                                      onTap: () =>
+                                          controller.getArticleIndex(index),
+                                      child: CustomListTile(
+                                        date: controller
+                                            .articles[index].publishedAt
+                                            .toString()
+                                            .substring(0, 10),
+                                        imageUrl: controller
+                                                .articles[index].urlToImage ??
                                             '',
-                                    title:
-                                        controller.articles[index].title ?? '',
-                                    subtitle:
-                                        controller.articles[index].author ?? '',
-                                  ),
-                                );
-                              },
+                                        title:
+                                            controller.articles[index].title ??
+                                                '',
+                                        subtitle:
+                                            controller.articles[index].author ??
+                                                '',
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
                 ],
               );
             }),
