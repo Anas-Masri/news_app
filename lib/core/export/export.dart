@@ -12,7 +12,7 @@ export 'package:news_app/core/routing/routes.dart';
 export 'package:news_app/core/services/generated/codegen_loader.g.dart';
 export 'package:news_app/core/services/generated/locale_keys.g.dart';
 export 'package:news_app/model/news_model.dart';
-export 'package:news_app/view/search/search_controller/search_controller.dart';
+export 'package:news_app/view/home/home_controller/home_controller.dart';
 export 'package:news_app/widgets/custom_list_tile.dart';
 export 'package:get/get.dart';
 export 'package:cached_network_image/cached_network_image.dart';

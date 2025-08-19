@@ -6,19 +6,19 @@ class HomeController extends GetxController {
   List<Article> articles = [];
   List<Article> topHeadLineArticles = [];
   Statues statues = Statues.init;
-
+  TextEditingController searchController = TextEditingController();
   changeCategory(int index) {
     articles = [];
     topHeadLineArticles = [];
     selectedCategory = index;
-    getAllNews();
+    getAllNews(AppContant.categoryList[selectedCategory]);
     getTopHeadLine();
     update();
   }
 
   @override
   void onInit() {
-    getAllNews();
+    getAllNews(AppContant.categoryList[selectedCategory]);
     getTopHeadLine();
     super.onInit();
   }
@@ -33,12 +33,23 @@ class HomeController extends GetxController {
     Get.toNamed(Routes.articleView, arguments: topHeadLineArticles[index]);
   }
 
-  Future<void> getAllNews() async {
+  clearSeach() {
+    searchController.clear();
+    update();
+  }
+
+  search(searchedText) {
+    if (searchedText.toString().length > 3) {
+      getAllNews(searchedText);
+    }
+  }
+
+  Future<void> getAllNews(String search) async {
     statues = Statues.loading;
     update();
     final response =
         await AppApi.getData(url: AppLinks.everything, queryParameters: {
-      'q': AppContant.categoryList[selectedCategory],
+      'q': search,
       'apiKey': AppContant.apiKey,
     });
     response.fold(
