@@ -3,11 +3,16 @@ import '../../../core/export/export.dart';
 
 class HomeController extends GetxController {
   int selectedCategory = 0;
-  List<Article> articles = <Article>[];
+  List<Article> articles = [];
+  List<Article> topHeadLineArticles = [];
   Statues statues = Statues.init;
-  int articleIndex = 0;
+
   changeCategory(int index) {
+    articles = [];
+    topHeadLineArticles = [];
     selectedCategory = index;
+    getAllNews();
+    getTopHeadLine();
     update();
   }
 
@@ -19,9 +24,13 @@ class HomeController extends GetxController {
   }
 
   getArticleIndex(int index) {
-    articleIndex = index;
     update();
-    Get.toNamed(Routes.articleView);
+    Get.toNamed(Routes.articleView, arguments: articles[index]);
+  }
+
+  getArticleTopHeadLineIndex(int index) {
+    update();
+    Get.toNamed(Routes.articleView, arguments: topHeadLineArticles[index]);
   }
 
   Future<void> getAllNews() async {
@@ -29,7 +38,7 @@ class HomeController extends GetxController {
     update();
     final response =
         await AppApi.getData(url: AppLinks.everything, queryParameters: {
-      'q': '*',
+      'q': AppContant.categoryList[selectedCategory],
       'apiKey': AppContant.apiKey,
     });
     response.fold(
@@ -63,7 +72,7 @@ class HomeController extends GetxController {
         statues = Statues.success;
         update();
 
-        articles = news.articles ?? [];
+        topHeadLineArticles = news.articles ?? [];
       },
     );
   }

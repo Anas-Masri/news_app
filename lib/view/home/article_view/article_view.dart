@@ -7,6 +7,7 @@ class ArticleView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Article article = Get.arguments as Article;
     return Scaffold(
       backgroundColor: AppColor.whiteColor,
       body: GetBuilder(
@@ -17,8 +18,7 @@ class ArticleView extends StatelessWidget {
                 Positioned(
                   top: 0,
                   child: CachedNetworkImage(
-                    imageUrl: controller
-                        .articles[controller.articleIndex].urlToImage!,
+                    imageUrl: article.urlToImage!,
                     height: 316.h,
                     width: 430.w,
                     fit: BoxFit.fill,
@@ -41,20 +41,17 @@ class ArticleView extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 SizedBox(height: 24.h),
-                                Text(
-                                    controller.articles[controller.articleIndex]
-                                        .title!,
+                                Text(article.title!,
                                     style: AppTextStyle.title18Black),
                                 SizedBox(height: 16.h),
                                 Text(
-                                    '${controller.articles[controller.articleIndex].author ?? ''} . ${controller.articles[controller.articleIndex].publishedAt.toString().substring(0, 10)}',
+                                    '${article.author ?? ''} . ${article.publishedAt.toString().substring(0, 10)}',
                                     style: AppTextStyle.subTitle12Greay),
                                 SizedBox(height: 24.h),
                                 Text(
                                     style: AppTextStyle.subTitle16black
                                         .copyWith(height: 2),
-                                    controller.articles[controller.articleIndex]
-                                        .description!)
+                                    article.description!)
                               ],
                             ),
                           ),

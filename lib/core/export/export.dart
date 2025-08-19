@@ -16,3 +16,4 @@ export 'package:news_app/view/search/search_controller/search_controller.dart';
 export 'package:news_app/widgets/custom_list_tile.dart';
 export 'package:get/get.dart';
 export 'package:cached_network_image/cached_network_image.dart';
+export 'package:news_app/widgets/custom_center_circular_progress_indicator.dart';

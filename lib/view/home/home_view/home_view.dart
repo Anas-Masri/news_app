@@ -1,5 +1,7 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:easy_localization/easy_localization.dart' as easy;
 import 'package:news_app/view/home/home_controller/home_controller.dart';
+import 'package:news_app/widgets/custom_horesintal_crousel_list_item.dart';
 
 import '../../../core/export/export.dart';
 
@@ -30,101 +32,114 @@ class HomeView extends StatelessWidget {
           child: GetBuilder(
               init: HomeController(),
               builder: (controller) {
-                return Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 32.w),
-                  child: Builder(builder: (context) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: EdgeInsets.only(top: 16.h),
-                          child: SizedBox(
-                            height: 32.h,
-                            child: ListView.separated(
-                              separatorBuilder: (context, index) =>
-                                  SizedBox(width: 12.w),
-                              scrollDirection: Axis.horizontal,
-                              itemCount: AppContant.categoryList.length,
-                              itemBuilder: (BuildContext context, int index) {
-                                return GestureDetector(
-                                  onTap: () => controller.changeCategory(index),
-                                  child: Container(
-                                    padding: EdgeInsets.symmetric(
-                                        horizontal: 24.w, vertical: 6.h),
-                                    decoration: BoxDecoration(
-                                        border: Border.all(
-                                            color: AppColor.lightgreayColor),
-                                        color:
-                                            controller.selectedCategory == index
-                                                ? AppColor.lightgreayColor
-                                                : AppColor.transparentColor,
-                                        borderRadius:
-                                            BorderRadius.circular(56.r)),
-                                    child: Text(
-                                      AppContant.categoryList[index],
-                                      style: AppTextStyle.subTitle14Black,
-                                    ),
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(top: 16.h, left: 32.w),
+                      child: SizedBox(
+                        height: 32.h,
+                        child: ListView.separated(
+                          separatorBuilder: (context, index) =>
+                              SizedBox(width: 12.w),
+                          scrollDirection: Axis.horizontal,
+                          itemCount: AppContant.categoryList.length,
+                          itemBuilder: (BuildContext context, int index) {
+                            return GestureDetector(
+                              onTap: () => controller.changeCategory(index),
+                              child: Container(
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 24.w, vertical: 6.h),
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: AppColor.lightgreayColor),
+                                    color: controller.selectedCategory == index
+                                        ? AppColor.lightgreayColor
+                                        : AppColor.transparentColor,
+                                    borderRadius: BorderRadius.circular(56.r)),
+                                child: Text(
+                                  AppContant.categoryList[index],
+                                  style: AppTextStyle.subTitle14Black,
+                                ),
+                              ),
+                            );
+                          },
                         ),
-                        switch (controller.statues) {
-                          Statues.loading => Column(
-                              children: [
-                                SizedBox(
-                                    height: MediaQuery.of(context).size.height /
-                                        2.5),
-                                const Center(
-                                    child: CircularProgressIndicator(
-                                        color: AppColor.greayColor))
-                              ],
-                            ),
-                          Statues.init =>
-                            const Center(child: CircularProgressIndicator()),
-                          Statues.failure =>
-                            const Center(child: Text('failure try again')),
-                          Statues.success => Column(
+                      ),
+                    ),
+                    switch (controller.statues) {
+                      Statues.loading =>
+                        const CustomCenterCircularProgressIndicator(),
+                      Statues.init =>
+                        const CustomCenterCircularProgressIndicator(),
+                      Statues.failure =>
+                        const Center(child: Text('failure try again')),
+                      Statues.success => controller.articles.isEmpty
+                          ? const CustomCenterCircularProgressIndicator()
+                          : Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Padding(
                                   padding:
-                                      EdgeInsets.only(top: 24.h, bottom: 16.h),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(8.r),
-                                    child: CachedNetworkImage(
-                                      placeholder: (context, url) =>
-                                          const Center(
-                                              child: CircularProgressIndicator(
-                                        color: AppColor.lightgreayColor,
+                                      EdgeInsets.symmetric(horizontal: 16.w),
+                                  child: CarouselSlider(
+                                      items: [
+                                        for (int index = 0;
+                                            index <
+                                                controller
+                                                    .topHeadLineArticles.length;
+                                            index++)
+                                          GestureDetector(
+                                            onTap: () => controller
+                                                .getArticleTopHeadLineIndex(
+                                                    index),
+                                            child: CustomHoresintalCrouselListItem(
+                                                imageUrl: controller
+                                                        .topHeadLineArticles[
+                                                            index]
+                                                        .urlToImage ??
+                                                    '',
+                                                title: controller
+                                                        .topHeadLineArticles[
+                                                            index]
+                                                        .title ??
+                                                    '',
+                                                author: controller
+                                                        .topHeadLineArticles[
+                                                            index]
+                                                        .author ??
+                                                    '',
+                                                publishedAt: controller
+                                                    .topHeadLineArticles[index]
+                                                    .publishedAt
+                                                    .toString()
+                                                    .substring(0, 10)),
+                                          )
+                                      ],
+                                      options: CarouselOptions(
+                                        disableCenter: true,
+                                        height: 330.h,
+                                        aspectRatio: 3,
+                                        viewportFraction: 0.8,
+                                        initialPage: 0,
+                                        enableInfiniteScroll: true,
+                                        reverse: false,
+                                        autoPlay: true,
+                                        autoPlayInterval:
+                                            const Duration(seconds: 3),
+                                        autoPlayAnimationDuration:
+                                            const Duration(seconds: 1),
+                                        autoPlayCurve: Curves.fastOutSlowIn,
+                                        enlargeCenterPage: true,
+                                        enlargeFactor: 0.3,
+                                        // onPageChanged: callbackFunction,
+                                        scrollDirection: Axis.horizontal,
                                       )),
-                                      errorWidget: (context, url, error) =>
-                                          const Icon(
-                                        Icons.error,
-                                        color: AppColor.lightgreayColor,
-                                      ),
-                                      imageUrl:
-                                          controller.articles[0].urlToImage ??
-                                              '',
-                                      width: 366.w,
-                                      height: 206.h,
-                                      fit: BoxFit.cover,
-                                    ),
-                                  ),
                                 ),
-                                Text(
-                                    overflow: TextOverflow.ellipsis,
-                                    maxLines: 2,
-                                    controller.articles[0].title ?? '',
-                                    style: AppTextStyle.title18Black),
-                                SizedBox(height: 12.h),
-                                Text(
-                                    '${controller.articles[0].author ?? ''} . ${controller.articles[0].publishedAt.toString().substring(0, 10)}',
-                                    style: AppTextStyle.subTitle12Greay
-                                        .copyWith(fontSize: 14.sp)),
                                 SizedBox(height: 24.h),
-                                SizedBox(
+                                Container(
+                                  padding:
+                                      EdgeInsets.symmetric(horizontal: 32.w),
                                   height: 390.h,
                                   child: ListView.builder(
                                     itemCount: controller.articles.length,
@@ -154,10 +169,8 @@ class HomeView extends StatelessWidget {
                                 ),
                               ],
                             )
-                        },
-                      ],
-                    );
-                  }),
+                    },
+                  ],
                 );
               })),
     );

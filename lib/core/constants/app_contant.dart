@@ -1,7 +1,6 @@
 class AppContant {
   static const List<String> categoryList = [
     'general',
-    'Travel',
     'Technology',
     'Business',
     'health',
