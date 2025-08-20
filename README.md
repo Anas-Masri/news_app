@@ -1,16 +1,25 @@
-# news_app
+# 📰 News App
 
-A new Flutter project.
+تطبيق Flutter لعرض آخر الأخبار بشكل منظم وسهل الاستخدام.  
+يعتمد على **NewsAPI** لعرض الأخبار العالمية والمحلية، مع دعم تعدد اللغات وتصميم متجاوب.
 
-## Getting Started
+---
 
-This project is a starting point for a Flutter application.
+## ✨ المميزات
+- 🌍 دعم لغتين: **العربية** و **الإنجليزية** باستخدام **easy_localization**.
+- 📱 تصميم متجاوب مع مختلف أحجام الشاشات باستخدام **flutter_screenutil**.
+- ⚡️ إدارة الحالة والتنقل بين الصفحات باستخدام **GetX**.
+- 📰 جلب الأخبار من **[NewsAPI](https://newsapi.org/)**.
+- 🔎 البحث عن الأخبار حسب الكلمات المفتاحية.
+- 🎨 تصميم واجهة مستخدم بسيطة وسلسة.
 
-A few resources to get you started if this is your first Flutter project:
+---
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 📸 لقطات شاشة
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+
+## 🚀 التشغيل محليًا
+1. تأكد من تثبيت Flutter على جهازك.  
+2. استنسخ المشروع:
+   ```bash
+   git clone https://github.com/username/news_app.git
