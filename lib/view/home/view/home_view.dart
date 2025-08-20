@@ -6,21 +6,16 @@ import '../../../core/export/export.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
-
   @override
   Widget build(BuildContext context) {
+    HomeController controller = Get.put(HomeController());
+
     return Scaffold(
       backgroundColor: AppColor.whiteColor,
       appBar: AppBar(
         actions: [
           GestureDetector(
-              onTap: () {
-                if (context.locale.languageCode == 'en') {
-                  context.setLocale(const Locale('ar'));
-                } else {
-                  context.setLocale(const Locale('en'));
-                }
-              },
+              onTap: () => controller.changeLanguage(context),
               child: const Icon(Icons.translate_sharp)),
           Padding(
               padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -67,7 +62,7 @@ class HomeView extends StatelessWidget {
                                         : AppColor.transparentColor,
                                     borderRadius: BorderRadius.circular(56.r)),
                                 child: Text(
-                                  AppContant.categoryList[index],
+                                  AppContant.categoryList[index].tr(),
                                   style: AppTextStyle.subTitle14Black,
                                 ),
                               ),

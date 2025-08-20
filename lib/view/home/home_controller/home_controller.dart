@@ -1,4 +1,5 @@
-import 'package:news_app/core/services/app_api.dart';
+import 'package:easy_localization/easy_localization.dart';
+
 import '../../../core/export/export.dart';
 
 class HomeController extends GetxController {
@@ -23,7 +24,12 @@ class HomeController extends GetxController {
     super.onInit();
   }
 
-  void updateTranslate() {
+  void changeLanguage(BuildContext context) {
+    if (context.locale.languageCode == 'en') {
+      context.setLocale(const Locale('ar'));
+    } else {
+      context.setLocale(const Locale('en'));
+    }
     update();
   }
 
@@ -76,7 +82,7 @@ class HomeController extends GetxController {
     update();
     final response =
         await AppApi.getData(url: AppLinks.topHeadlines, queryParameters: {
-      'category': AppContant.categoryListEn[selectedCategory],
+      'category': AppContant.categoryList[selectedCategory],
       'apiKey': AppContant.apiKey,
     });
     response.fold(

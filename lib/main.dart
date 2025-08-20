@@ -28,6 +28,7 @@ class MyApp extends StatelessWidget {
       splitScreenMode: true,
       builder: (_, child) {
         return GetMaterialApp(
+          key: ValueKey(context.locale.languageCode),
           debugShowCheckedModeBanner: false,
           getPages: AppRoutes.appPages,
           initialRoute: Routes.homeView,
@@ -35,8 +36,10 @@ class MyApp extends StatelessWidget {
           supportedLocales: context.supportedLocales,
           locale: context.locale,
           title: 'Flutter Demo',
+          home: child,
         );
       },
+      // child: const HomeView(),
     );
   }
 }

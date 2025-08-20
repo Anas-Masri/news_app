@@ -17,3 +17,4 @@ export 'package:news_app/widgets/custom_list_tile.dart';
 export 'package:get/get.dart' hide Trans;
 export 'package:cached_network_image/cached_network_image.dart';
 export 'package:news_app/widgets/custom_center_circular_progress_indicator.dart';
+export 'package:news_app/core/services/app_api.dart';
